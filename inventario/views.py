@@ -5,15 +5,14 @@ from django.views.decorators.csrf import csrf_protect
 from django.views.decorators.http import require_POST
 from .models import Producto
 from .forms import ProductoForm
-
 from django.contrib.auth.models import Group, User
 from rest_framework import permissions, viewsets
 from .serializers import GroupSerializer, UserSerializer, ProductoSerializer
-
+from django.contrib.auth.decorators import login_required
 class ProductoViewSet(viewsets.ModelViewSet):
     queryset = Producto.objects.all().order_by("nombre")
     serializer_class = ProductoSerializer
-    permission_classes = []
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class UserViewSet(viewsets.ModelViewSet):
