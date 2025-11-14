@@ -13,7 +13,7 @@ from .serializers import GroupSerializer, UserSerializer, ProductoSerializer
 class ProductoViewSet(viewsets.ModelViewSet):
     queryset = Producto.objects.all().order_by("nombre")
     serializer_class = ProductoSerializer
-    permission_classes = []
+    permission_classes = [permissions.IsAuthenticated]
 
 
 class UserViewSet(viewsets.ModelViewSet):
